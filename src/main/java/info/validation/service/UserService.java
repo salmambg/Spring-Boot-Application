@@ -1,0 +1,27 @@
+package info.validation.service;
+
+import info.validation.dto.UserRequest;
+import info.validation.entity.User;
+import info.validation.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public User saveUser(UserRequest userRequest) {
+        User user = User.build(0, userRequest.getName(), userRequest.getEmail(), userRequest.getMobile(), userRequest.getAge(), userRequest.getGender(), userRequest.getNationality());
+        return userRepository.save(user);
+    }
+    public List<User> getAllUser () {
+        return userRepository.findAll();
+    }
+    public User getUser(int id) {
+        return userRepository.findByUserId(id);
+    }
+
+}
