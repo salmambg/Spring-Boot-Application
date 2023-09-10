@@ -2,6 +2,7 @@ package info.validation.controller;
 
 import info.validation.dto.UserRequest;
 import info.validation.entity.User;
+import info.validation.exception.UserNotFoundException;
 import info.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUser());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser (@PathVariable int id) {
+    public ResponseEntity<User> getUser (@PathVariable int id) throws UserNotFoundException {
         return ResponseEntity.ok(userService.getUser(id));
     }
 
