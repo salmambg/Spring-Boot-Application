@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/signup")
-    public ResponseEntity<User> saveUser (@RequestBody UserRequest userRequest) {
+    public ResponseEntity<User> saveUser (@RequestBody @Valid UserRequest userRequest) {
         System.out.println("user request ->" + userRequest);
         return new ResponseEntity<>(userService.saveUser(userRequest), HttpStatus.CREATED);
     }
